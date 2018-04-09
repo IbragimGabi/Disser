@@ -3,3 +3,7 @@
 ################################################################################
 
 /Disser/obj
+/DisserMVC/wwwroot
+/DisserMVC/obj
+/DisserMVC/bin/Debug/netcoreapp2.0
+/.vs
