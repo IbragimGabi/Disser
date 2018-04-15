@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Disser", "Disser\Disser.csproj", "{A2CA0F70-7A1B-4AC3-A518-98D0B78A518E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Disser", "Disser\Disser.csproj", "{A2CA0F70-7A1B-4AC3-A518-98D0B78A518E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisserMVC", "DisserMVC\DisserMVC.csproj", "{FD5D5654-5B87-4F79-95FD-B5D009D222BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisserMVC2", "DisserMVC\DisserMVC.csproj", "{C132AFD6-F6E9-40E5-B10F-46B514D88D98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{A2CA0F70-7A1B-4AC3-A518-98D0B78A518E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2CA0F70-7A1B-4AC3-A518-98D0B78A518E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2CA0F70-7A1B-4AC3-A518-98D0B78A518E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD5D5654-5B87-4F79-95FD-B5D009D222BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD5D5654-5B87-4F79-95FD-B5D009D222BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD5D5654-5B87-4F79-95FD-B5D009D222BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD5D5654-5B87-4F79-95FD-B5D009D222BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C132AFD6-F6E9-40E5-B10F-46B514D88D98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C132AFD6-F6E9-40E5-B10F-46B514D88D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C132AFD6-F6E9-40E5-B10F-46B514D88D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C132AFD6-F6E9-40E5-B10F-46B514D88D98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

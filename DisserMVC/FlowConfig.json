@@ -1,0 +1,23 @@
+[
+  {
+    "1": {
+      "StateId": "1",
+      "View": "FirstStep",
+      "Next": "2"
+    }
+  },
+  {
+    "2": {
+      "StateId": "2",
+      "View": "SecondStep",
+      "Next": "3"
+    }
+  },
+  {
+    "3": {
+      "StateId": "3",
+      "View": "ThirdStep",
+      "Next": "1"
+    }
+  }
+]

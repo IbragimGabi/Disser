@@ -5,17 +5,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DisserMVC.Models;
-using DisserMVC.Flow;
+using DisserMVC.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace DisserMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private IFlowService flowService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-
-        public IActionResult Index()
+        public HomeController(IFlowService flowService, UserManager<ApplicationUser> userManager)
         {
-            return View(FlowManager.GoToNextState());
+            this.flowService = flowService;
+            this.userManager = userManager;
+        }
+        public IActionResult Index(string flow)
+        {
+            return View();
+        }
+
+
+        public IActionResult Test(string flow)
+        {
+            var user = userManager.GetUserAsync(HttpContext.User).Result;
+            if (flow == "next")
+                return View(flowService.GoToNextState(user));
+            if (flow == "previous")
+                return View(flowService.GoToPreviousState(user));
+            return View(flowService.GetCurrentState(user));
         }
 
         public IActionResult About()
@@ -29,7 +47,7 @@ namespace DisserMVC.Controllers
         {
             ViewData["Message"] = "Your contact page.";
 
-            return View("");
+            return View();
         }
 
         public IActionResult Error()

@@ -1,5 +1,21 @@
-<config>
-  <State Id="1" View="FirstStep" Next="2"/>
-  <State Id="2" View="SecondStep" Next="3"/>
-  <State Id="3" View="ThirdStep" Next=""/>
-</config>
+<?xml version="1.0"?>
+<ArrayOfState>
+  <State>
+    <Id>1</Id>
+    <PreviousState>1</PreviousState>
+    <CurrentState>FirstStep</CurrentState>
+    <NextState>2</NextState>
+  </State>
+  <State>
+    <Id>2</Id>
+    <PreviousState>1</PreviousState>
+    <CurrentState>SecondStep</CurrentState>
+    <NextState>3</NextState>
+  </State>
+  <State>
+    <Id>3</Id>
+    <PreviousState>2</PreviousState>
+    <CurrentState>ThirdStep</CurrentState>
+    <NextState>3</NextState>
+  </State>
+</ArrayOfState>
