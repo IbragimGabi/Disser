@@ -18,22 +18,31 @@ namespace DisserMVC.Services
             this.flowWorker = flowWorker;
         }
 
-        public string GetCurrentState(ApplicationUser user)
+        public string GetCurrentState(ref ApplicationUser user)
         {
-            var flow = flowWorker.GetFlow(user.CurrentState);
+            FlowData flow;
+            if (user.CurrentState == 0)
+                flow = flowWorker.GetFlow(user.CurrentState + 1);
+            else
+                flow = flowWorker.GetFlow(user.CurrentState);
+            user.CurrentState = flow.Id;
             return flow.CurrentState;
         }
 
-        public string GoToNextState(ApplicationUser user)
+        public string GoToNextState(ref ApplicationUser user)
         {
             var flow = flowWorker.GetFlow(user.CurrentState);
-            return flow.NextState;
+            var nextState = flowWorker.GetFlow(flow.NextState);
+            user.CurrentState = nextState.Id;
+            return nextState.CurrentState;
         }
 
-        public string GoToPreviousState(ApplicationUser user)
+        public string GoToPreviousState(ref ApplicationUser user)
         {
             var flow = flowWorker.GetFlow(user.CurrentState);
-            return flow.PreviousState;
+            var nextState = flowWorker.GetFlow(flow.PreviousState);
+            user.CurrentState = nextState.Id;
+            return nextState.CurrentState;
         }
     }
 }

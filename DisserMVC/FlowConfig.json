@@ -1,23 +1,20 @@
 [
   {
-    "1": {
-      "StateId": "1",
-      "View": "FirstStep",
-      "Next": "2"
-    }
+    "Id": "1",
+    "PreviousState": "1",
+    "CurrentState": "FirstStep",
+    "NextState": "2"
   },
   {
-    "2": {
-      "StateId": "2",
-      "View": "SecondStep",
-      "Next": "3"
-    }
+    "Id": "2",
+    "PreviousState": "1",
+    "CurrentState": "SecondStep",
+    "NextState": "3"
   },
   {
-    "3": {
-      "StateId": "3",
-      "View": "ThirdStep",
-      "Next": "1"
-    }
+    "Id": "3",
+    "PreviousState": "2",
+    "CurrentState": "ThirdStep",
+    "NextState": "3"
   }
 ]

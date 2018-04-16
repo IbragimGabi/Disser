@@ -15,8 +15,8 @@ namespace DisserMVC.Flow
         [DataMember]
         public string CurrentState { get; set; }
         [DataMember]
-        public string PreviousState { get; set; }
+        public int PreviousState { get; set; }
         [DataMember]
-        public string NextState { get; set; }
+        public int NextState { get; set; }
     }
 }
