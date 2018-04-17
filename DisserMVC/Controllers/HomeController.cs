@@ -26,15 +26,12 @@ namespace DisserMVC.Controllers
             return View();
         }
 
-        public IActionResult Test(string flow)
+        public IActionResult Test(string flow, string condition)
         {
             var user = userManager.GetUserAsync(HttpContext.User).Result;
+            string state = flowService.ChangeState(ref user, flow, condition);
             userManager.UpdateAsync(user);
-            if (flow == "next")
-                return View(flowService.GoToNextState(ref user));
-            if (flow == "previous")
-                return View(flowService.GoToPreviousState(ref user));
-            return View(flowService.GetCurrentState(ref user));
+            return View(state);
         }
 
         public IActionResult About()

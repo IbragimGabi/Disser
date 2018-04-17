@@ -3,7 +3,11 @@
     "Id": "1",
     "PreviousState": "1",
     "CurrentState": "FirstStep",
-    "NextState": "2"
+    "NextState": "2",
+    "Conditions": {
+      "cond1": 2,
+      "cond2": 3
+    }
   },
   {
     "Id": "2",

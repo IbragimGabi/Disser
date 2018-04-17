@@ -20,6 +20,11 @@ namespace DisserMVC.Flow
             }
         }
 
+        public int GetCondtition(int id, string condition)
+        {
+            throw new NotImplementedException();
+        }
+
         public FlowData GetFlow(int id)
         {
             if (flows == null)

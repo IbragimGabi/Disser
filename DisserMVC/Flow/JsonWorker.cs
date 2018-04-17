@@ -9,7 +9,10 @@ namespace DisserMVC.Flow
 {
     public class JsonWorker : IFlowWorker
     {
-        DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(FlowData[]));
+        DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(FlowData[]), new DataContractJsonSerializerSettings()
+        {
+            UseSimpleDictionaryFormat = true
+        });
         FlowData[] flows = null;
 
         public JsonWorker()
@@ -18,6 +21,18 @@ namespace DisserMVC.Flow
             {
                 flows = (FlowData[])jsonFormatter.ReadObject(fs);
             }
+        }
+
+        public int GetCondtition(int id, string condition)
+        {
+            if (flows == null)
+                using (FileStream fs = new FileStream("FlowConfig.json", FileMode.Open))
+                {
+                    flows = (FlowData[])jsonFormatter.ReadObject(fs);
+                }
+            var flow = flows.FirstOrDefault(_ => _.Id == id);
+            var nextStateId = flow.Conditions.FirstOrDefault(_ => _.Key == condition).Value;
+            return nextStateId;
         }
 
         public FlowData GetFlow(int id)
