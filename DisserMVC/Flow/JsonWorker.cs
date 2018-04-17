@@ -10,15 +10,24 @@ namespace DisserMVC.Flow
     public class JsonWorker : IFlowWorker
     {
         DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(FlowData[]));
+        FlowData[] flows = null;
+
+        public JsonWorker()
+        {
+            using (FileStream fs = new FileStream("FlowConfig.json", FileMode.Open))
+            {
+                flows = (FlowData[])jsonFormatter.ReadObject(fs);
+            }
+        }
 
         public FlowData GetFlow(int id)
         {
-            FlowData[] flow;
-            using (FileStream fs = new FileStream("FlowConfig.json", FileMode.Open))
-            {
-                flow = (FlowData[])jsonFormatter.ReadObject(fs);
-            }
-            return flow.FirstOrDefault(_ => _.Id == id);
+            if (flows == null)
+                using (FileStream fs = new FileStream("FlowConfig.json", FileMode.Open))
+                {
+                    flows = (FlowData[])jsonFormatter.ReadObject(fs);
+                }
+            return flows.FirstOrDefault(_ => _.Id == id);
         }
     }
 }
