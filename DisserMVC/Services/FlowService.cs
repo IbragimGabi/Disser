@@ -18,19 +18,19 @@ namespace DisserMVC.Services
             this.flowWorker = flowWorker;
         }
 
-        public string ChangeState(ref ApplicationUser user, string path, string condition)
+        public string ChangeState(ApplicationUser user, string path, string condition)
         {
             string state = "";
             if (path == "next")
-                state = GoToNextState(ref user, condition);
+                state = GoToNextState(user, condition);
             if (path == "previous")
-                state = GoToPreviousState(ref user);
+                state = GoToPreviousState(user);
             if (path == null)
-                state = GetCurrentState(ref user);
+                state = GetCurrentState(user);
             return state;
         }
 
-        public string GetCurrentState(ref ApplicationUser user)
+        public string GetCurrentState(ApplicationUser user)
         {
             FlowData flow;
             if (user.CurrentState == 0)
@@ -41,7 +41,7 @@ namespace DisserMVC.Services
             return flow.CurrentState;
         }
 
-        public string GoToNextState(ref ApplicationUser user, string condition)
+        public string GoToNextState(ApplicationUser user, string condition)
         {
             if (condition == null)
             {
@@ -59,7 +59,7 @@ namespace DisserMVC.Services
             }
         }
 
-        public string GoToPreviousState(ref ApplicationUser user)
+        public string GoToPreviousState(ApplicationUser user)
         {
             var flow = flowWorker.GetFlow(user.CurrentState);
             var nextState = flowWorker.GetFlow(flow.PreviousState);

@@ -29,7 +29,7 @@ namespace DisserMVC.Controllers
         public IActionResult Test(string flow, string condition)
         {
             var user = userManager.GetUserAsync(HttpContext.User).Result;
-            string state = flowService.ChangeState(ref user, flow, condition);
+            string state = flowService.ChangeState(user, flow, condition);
             userManager.UpdateAsync(user);
             return View(state);
         }

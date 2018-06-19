@@ -8,9 +8,9 @@ namespace DisserMVC.Services
 {
     public interface IFlowService
     {
-        string GoToNextState(ref ApplicationUser user, string condition);
-        string GoToPreviousState(ref ApplicationUser user);
-        string GetCurrentState(ref ApplicationUser user);
-        string ChangeState(ref ApplicationUser user, string path, string condition);
+        string GoToNextState(ApplicationUser user, string condition);
+        string GoToPreviousState(ApplicationUser user);
+        string GetCurrentState(ApplicationUser user);
+        string ChangeState(ApplicationUser user, string path, string condition);
     }
 }
