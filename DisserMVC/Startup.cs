@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using DisserMVC.Data;
+﻿using DisserMVC.Data;
+using DisserMVC.Flow;
 using DisserMVC.Models;
 using DisserMVC.Services;
-using DisserMVC.Flow;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DisserMVC
 {
@@ -37,7 +33,7 @@ namespace DisserMVC
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddScoped<IFlowService>(s => new FlowService(new JsonWorker()));
+            services.AddScoped<IFlowService>(s => new NewFlowService(new CsxmlWorker()));
 
             services.AddMvc();
         }

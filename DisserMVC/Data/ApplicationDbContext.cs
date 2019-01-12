@@ -16,6 +16,7 @@ namespace DisserMVC.Data
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        //public DbSet<Test> Tests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -25,9 +26,10 @@ namespace DisserMVC.Data
                 entity.Property(e => e.CurrentState)
                     .HasColumnType("int");
             });
-                // Customize the ASP.NET Identity model and override the defaults if needed.
-                // For example, you can rename the ASP.NET Identity table names and more.
-                // Add your customizations after calling base.OnModelCreating(builder);
+            //builder.Entity<Test>();
+            // Customize the ASP.NET Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Identity table names and more.
+            // Add your customizations after calling base.OnModelCreating(builder);
         }
     }
 }

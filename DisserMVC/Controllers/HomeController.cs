@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using DisserMVC.Models;
+﻿using DisserMVC.Models;
 using DisserMVC.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace DisserMVC.Controllers
 {
@@ -30,7 +26,7 @@ namespace DisserMVC.Controllers
         {
             var user = userManager.GetUserAsync(HttpContext.User).Result;
             string state = flowService.ChangeState(user, flow, condition);
-            userManager.UpdateAsync(user);
+            userManager.UpdateAsync(user).Wait();
             return View(state);
         }
 

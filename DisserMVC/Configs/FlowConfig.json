@@ -1,7 +1,7 @@
 [
   {
     "Id": "1",
-    "PreviousState": "1",
+    "PreviousState": "0",
     "CurrentState": "FirstStep",
     "NextState": "2",
     "Conditions": {

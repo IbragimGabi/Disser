@@ -14,7 +14,7 @@ namespace DisserMVC.Flow
 
         public XmlWorker()
         {
-            using (FileStream fs = new FileStream("persons.xml", FileMode.Open))
+            using (FileStream fs = new FileStream(@".\Configs\FlowConfig.xml", FileMode.Open))
             {
                 flows = (FlowData[])formatter.Deserialize(fs);
             }
@@ -28,11 +28,21 @@ namespace DisserMVC.Flow
         public FlowData GetFlow(int id)
         {
             if (flows == null)
-                using (FileStream fs = new FileStream("persons.xml", FileMode.Open))
+                using (FileStream fs = new FileStream(@".\Configs\FlowConfig.xml", FileMode.Open))
                 {
                     flows = (FlowData[])formatter.Deserialize(fs);
                 }
             return flows.FirstOrDefault(_ => _.Id == id);
+        }
+
+        public FlowState GetFlowStateById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public FlowState GetFlowStateByName(string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

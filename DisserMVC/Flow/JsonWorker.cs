@@ -17,7 +17,7 @@ namespace DisserMVC.Flow
 
         public JsonWorker()
         {
-            using (FileStream fs = new FileStream("FlowConfig.json", FileMode.Open))
+            using (FileStream fs = new FileStream(@".\Configs\FlowConfig.json", FileMode.Open))
             {
                 flows = (FlowData[])jsonFormatter.ReadObject(fs);
             }
@@ -26,7 +26,7 @@ namespace DisserMVC.Flow
         public int GetCondtition(int id, string condition)
         {
             if (flows == null)
-                using (FileStream fs = new FileStream("FlowConfig.json", FileMode.Open))
+                using (FileStream fs = new FileStream(@".\Configs\FlowConfig.json", FileMode.Open))
                 {
                     flows = (FlowData[])jsonFormatter.ReadObject(fs);
                 }
@@ -38,11 +38,21 @@ namespace DisserMVC.Flow
         public FlowData GetFlow(int id)
         {
             if (flows == null)
-                using (FileStream fs = new FileStream("FlowConfig.json", FileMode.Open))
+                using (FileStream fs = new FileStream(@".\Configs\FlowConfig.json", FileMode.Open))
                 {
                     flows = (FlowData[])jsonFormatter.ReadObject(fs);
                 }
             return flows.FirstOrDefault(_ => _.Id == id);
+        }
+
+        public FlowState GetFlowStateById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public FlowState GetFlowStateByName(string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,0 +1,16 @@
+<scxml version="1.0" xmlns="http://www.w3.org/2005/07/scxml">
+  <initial>
+    <transition target="FirstStep" type="external"/>
+  </initial>
+  <state id="FirstStep">
+    <transition event="SecondStep" target="SecondStep" type="external"/>
+    <transition event="ThirdStep" target="ThirdStep" type="external"/>
+  </state>
+  <state id="SecondStep">
+    <transition target="ThirdStep" type="external"/>
+  </state>
+  <state id="ThirdStep">
+    <transition target="Final" type="external"/>
+  </state>
+  <final id="Final"/>
+</scxml>

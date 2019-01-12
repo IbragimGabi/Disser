@@ -9,3 +9,4 @@
 /.vs
 /Disser/bin/Debug/netcoreapp2.0
 /DisserMVC/Data/Migrations
+/DisserMVC/bin/Debug/netcoreapp2.2

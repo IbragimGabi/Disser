@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace DisserMVC.Flow
+﻿namespace DisserMVC.Flow
 {
     public interface IFlowWorker
     {
         FlowData GetFlow(int id);
+        FlowState GetFlowStateById(int id);
+        FlowState GetFlowStateByName(string name);
         int GetCondtition(int id, string condition);
     }
 }

@@ -38,6 +38,7 @@ namespace DisserMVC.Services
             else
                 flow = flowWorker.GetFlow(user.CurrentState);
             user.CurrentState = flow.Id;
+            user.PreviousState = -1;
             return flow.CurrentState;
         }
 
@@ -48,12 +49,14 @@ namespace DisserMVC.Services
                 var flow = flowWorker.GetFlow(user.CurrentState);
                 var nextState = flowWorker.GetFlow(flow.NextState);
                 user.CurrentState = nextState.Id;
+                user.PreviousState = -1;
                 return nextState.CurrentState;
             }
             else
             {
                 int stateId = flowWorker.GetCondtition(user.CurrentState, condition);
                 var nextState = flowWorker.GetFlow(stateId);
+                user.PreviousState = user.CurrentState;
                 user.CurrentState = nextState.Id;
                 return nextState.CurrentState;
             }
@@ -61,10 +64,22 @@ namespace DisserMVC.Services
 
         public string GoToPreviousState(ApplicationUser user)
         {
-            var flow = flowWorker.GetFlow(user.CurrentState);
-            var nextState = flowWorker.GetFlow(flow.PreviousState);
-            user.CurrentState = nextState.Id;
-            return nextState.CurrentState;
+            if (user.PreviousState == -1)
+            {
+                var flow = flowWorker.GetFlow(user.CurrentState);
+                var nextState = flowWorker.GetFlow(flow.PreviousState);
+                user.CurrentState = nextState.Id;
+                user.PreviousState = -1;
+                return nextState.CurrentState;
+            }
+            else
+            {
+                var flow = flowWorker.GetFlow(user.PreviousState);
+                var nextState = flowWorker.GetFlow(flow.Id);
+                user.CurrentState = nextState.Id;
+                user.PreviousState = -1;
+                return nextState.CurrentState;
+            }
         }
     }
 }
