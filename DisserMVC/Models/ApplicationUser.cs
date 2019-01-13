@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace DisserMVC.Models
 {
@@ -7,5 +8,7 @@ namespace DisserMVC.Models
     {
         public int CurrentState { get; set; }
         public int PreviousState { get; set; }
+
+        public List<Tests> UserTests { get; set; }
     }
 }

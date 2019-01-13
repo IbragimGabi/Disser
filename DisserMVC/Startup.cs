@@ -35,6 +35,8 @@ namespace DisserMVC
 
             services.AddScoped<IFlowService>(s => new NewFlowService(new CsxmlWorker()));
 
+            services.AddScoped<TestRepository>();
+
             services.AddMvc();
         }
 
