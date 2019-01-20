@@ -5,11 +5,11 @@ using System.Xml;
 
 namespace DisserMVC.Flow
 {
-    public class CsxmlWorker : IFlowWorker
+    public class ScxmlWorker : IFlowWorker
     {
         private List<FlowState> states = null;
 
-        public CsxmlWorker()
+        public ScxmlWorker()
         {
             states = LoadConfig();
         }

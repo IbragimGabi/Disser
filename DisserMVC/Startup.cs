@@ -33,7 +33,7 @@ namespace DisserMVC
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddScoped<IFlowService>(s => new NewFlowService(new CsxmlWorker()));
+            services.AddScoped<IFlowService>(s => new NewFlowService(new ScxmlWorker()));
 
             services.AddScoped<TestRepository>();
 

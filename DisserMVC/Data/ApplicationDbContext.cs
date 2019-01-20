@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DisserMVC.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using DisserMVC.Models;
 
 namespace DisserMVC.Data
 {
@@ -17,8 +13,8 @@ namespace DisserMVC.Data
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public virtual DbSet<TestQuestion> TestQuestion { get; set; }
-        public virtual DbSet<TestTasks> TestTasks { get; set; }
-        public virtual DbSet<Tests> Tests { get; set; }
+        public virtual DbSet<TestTask> TestTasks { get; set; }
+        public virtual DbSet<Test> Tests { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -39,14 +35,15 @@ namespace DisserMVC.Data
                     .HasForeignKey(d => d.TestTaskId);
             });
 
-            builder.Entity<TestTasks>(entity =>
+            builder.Entity<TestTask>(entity =>
             {
-                entity.HasIndex(e => e.TestId);
+                entity.HasIndex(e => e.TestTaskId);
 
                 entity.HasOne(d => d.Test)
                     .WithMany(p => p.TestTasks)
-                    .HasForeignKey(d => d.TestId);
+                    .HasForeignKey(t => new { t.TestId });
             });
+
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);

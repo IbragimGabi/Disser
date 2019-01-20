@@ -9,6 +9,6 @@ namespace DisserMVC.Models
         public int CurrentState { get; set; }
         public int PreviousState { get; set; }
 
-        public List<Tests> UserTests { get; set; }
+        public List<Test> UserTests { get; set; }
     }
 }

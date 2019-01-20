@@ -13,24 +13,24 @@ namespace DisserMVC.Data
             _dbContext = dbContext;
         }
 
-        public List<Tests> GetAllTests()
+        public List<Test> GetAllTests()
         {
             return _dbContext.Tests.ToList();
         }
 
-        public Tests GetTestsByUserId(string userId)
+        public Test GetTestsByUserId(string userId)
         {
             return _dbContext.Tests.FirstOrDefault(_ => _.User.Id == userId);
         }
 
-        public Tests GetTestsByTestId(int testId)
+        public Test GetTestsByTestId(int testId)
         {
-            return _dbContext.Tests.FirstOrDefault(_ => _.Id == testId);
+            return _dbContext.Tests.FirstOrDefault(_ => _.TestId == testId);
         }
 
-        public TestTasks GetTestsByFlowId(string flowId, int testId)
+        public TestTask GetTestsByFlowId(string flowId, int testId)
         {
-            return _dbContext.Tests.FirstOrDefault(_ => _.Id == testId).TestTasks.FirstOrDefault(_ => _.FlowStateName == flowId);
+            return _dbContext.Tests.FirstOrDefault(_ => _.TestId == testId).TestTasks.FirstOrDefault(_ => _.FlowStateName == flowId);
         }
     }
 }

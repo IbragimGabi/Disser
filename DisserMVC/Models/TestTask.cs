@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DisserMVC.Models
 {
-    public partial class TestTasks
+    public partial class TestTask
     {
-        public TestTasks()
+        public TestTask()
         {
             TestQuestion = new HashSet<TestQuestion>();
         }
 
-        public int Id { get; set; }
-        public int? TestId { get; set; }
+        public int TestTaskId { get; set; }
         public string FlowStateName { get; set; }
 
-        public virtual Tests Test { get; set; }
+        public virtual Test Test { get; set; }
+        public int? TestId { get; set; }
+
         public virtual ICollection<TestQuestion> TestQuestion { get; set; }
     }
 }

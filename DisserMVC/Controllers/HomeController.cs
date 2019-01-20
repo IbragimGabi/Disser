@@ -4,7 +4,6 @@ using DisserMVC.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Collections.Generic;
 
 namespace DisserMVC.Controllers
 {
@@ -39,7 +38,7 @@ namespace DisserMVC.Controllers
         {
             var user = userManager.GetUserAsync(HttpContext.User).Result;
             string state = flowService.ChangeState(user, flow, condition);
-            var tasks = testRepository.GetTestsByFlowId(state, user.UserTests.Find(_ => _.Id == 0).Id);
+            var tasks = testRepository.GetTestsByFlowId(state, user.UserTests.Find(_ => _.TestId == 0).TestId);
             ViewData["Tasks"] = tasks;
             userManager.UpdateAsync(user).Wait();
             return View(state);

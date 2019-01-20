@@ -34,7 +34,7 @@ namespace DisserMVC.Controllers
             }
 
             var tests = await _context.Tests
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.TestId == id);
             if (tests == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace DisserMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] Tests tests)
+        public async Task<IActionResult> Create([Bind("Id")] Test tests)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace DisserMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] Tests tests)
+        public async Task<IActionResult> Edit(int id, [Bind("Id")] Test tests)
         {
-            if (id != tests.Id)
+            if (id != tests.TestId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace DisserMVC.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TestsExists(tests.Id))
+                    if (!TestsExists(tests.TestId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace DisserMVC.Controllers
             }
 
             var tests = await _context.Tests
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.TestId == id);
             if (tests == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace DisserMVC.Controllers
 
         private bool TestsExists(int id)
         {
-            return _context.Tests.Any(e => e.Id == id);
+            return _context.Tests.Any(e => e.TestId == id);
         }
     }
 }

@@ -18,6 +18,6 @@ namespace DisserMVC.Models
         public string UserFullAnswer { get; set; }
         public int? TestTaskId { get; set; }
 
-        public virtual TestTasks TestTask { get; set; }
+        public virtual TestTask TestTask { get; set; }
     }
 }
