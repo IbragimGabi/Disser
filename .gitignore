@@ -10,3 +10,8 @@
 /Disser/bin/Debug/netcoreapp2.0
 /DisserMVC/Data/Migrations
 /DisserMVC/bin/Debug/netcoreapp2.2
+/StateFlowFramework/bin/Debug/netstandard2.0
+/StateFlowFramework/obj
+/TestApplication/bin/Debug
+/TestApplication/obj
+/TestApplication/wwwroot

@@ -1,0 +1,42 @@
+﻿@using TestApplication.Models
+@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+    var tasks = (TestTask)ViewData["Tasks"];
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Страница один</title>
+</head>
+<body>
+    <b>Страница один</b><Br>
+    <form method="post" action="/Home/Buy">
+        @foreach (var question in @tasks.TestQuestion)
+        {
+            @if (question.QuestionType == 0)
+            {
+                <p>
+                    <b>@question.Question</b><Br>
+                    <input type="radio" name="Answer1" value="@question.Answer1"> @question.Answer1<Br>
+                    <input type="radio" name="Answer2" value="@question.Answer2"> @question.Answer2<Br>
+                    <input type="radio" name="Answer3" value="@question.Answer3"> @question.Answer3<Br>
+                    <input type="radio" name="Answer4" value="@question.Answer4"> @question.Answer4<Br>
+                </p>
+            }
+            @if (question.QuestionType == 1)
+            {
+                <p>@question.Question</p>
+                <input type="text" name="Answer" />
+            }
+        }
+        <input type="submit" value="Next" />
+    </form>
+
+    @*<a asp-area="" asp-controller="Home" asp-action="Test" asp-route-flow="next" asp-route-condition="SecondStep">Next</a>
+        <a asp-area="" asp-controller="Home" asp-action="Test" asp-route-flow="next" asp-route-condition="ThirdStep">Go to Last</a>*@
+</body>
+</html>
