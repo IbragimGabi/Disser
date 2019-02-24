@@ -1,6 +1,6 @@
-﻿using TestApplication.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using TestApplication.Models;
 
 namespace TestApplication.Data
 {
@@ -18,12 +18,12 @@ namespace TestApplication.Data
             return _dbContext.Tests.ToList();
         }
 
-        public Test GetTestsByUserId(string userId)
+        public List<Test> GetTestsByUserId(string userId)
         {
-            return _dbContext.Tests.FirstOrDefault(_ => _.User.Id == userId);
+            return _dbContext.Tests.Where(_ => _.User.Id == userId).ToList();
         }
 
-        public Test GetTestsByTestId(int testId)
+        public Test GetTestByTestId(int testId)
         {
             return _dbContext.Tests.FirstOrDefault(_ => _.TestId == testId);
         }

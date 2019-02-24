@@ -7,10 +7,16 @@ namespace StateFlowFramework
 {
     public class ScxmlWorker : IFlowWorker
     {
+        private string configFileId;
         private List<FlowState> states = null;
 
         public ScxmlWorker()
         {
+        }
+
+        public void InitFlowWorker(string fileId)
+        {
+            configFileId = fileId;
             states = LoadConfig();
         }
 
@@ -18,7 +24,7 @@ namespace StateFlowFramework
         {
             List<FlowState> states = new List<FlowState>();
             XmlDocument xml = new XmlDocument();
-            xml.Load(@".\Configs\FlowConfig.scxml");
+            xml.Load($@".\Configs\{configFileId}.scxml");
             XmlElement xRoot = xml.DocumentElement;
             int i = 0;
             foreach (XmlNode xnode in xRoot)
@@ -109,5 +115,7 @@ namespace StateFlowFramework
 
             return states.FirstOrDefault(_ => _.State == name);
         }
+
+
     }
 }

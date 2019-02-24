@@ -1,9 +1,10 @@
-﻿using TestApplication.Data;
-using TestApplication.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StateFlowFramework;
 using System.Diagnostics;
+using System.Linq;
+using TestApplication.Data;
+using TestApplication.Models;
 
 namespace TestApplication.Controllers
 {
@@ -12,6 +13,7 @@ namespace TestApplication.Controllers
         private IFlowService flowService;
         private readonly TestRepository testRepository;
         private readonly UserManager<ApplicationUser> userManager;
+        private Test currentUserTest;
 
         public HomeController(IFlowService flowService, UserManager<ApplicationUser> userManager, TestRepository testRepository)
         {
@@ -33,15 +35,47 @@ namespace TestApplication.Controllers
             return View(state);
         }
 
+        public IActionResult ChooseTest(int userTestId)
+        {
+            if (currentUserTest == null)
+            {
+                var user = userManager.GetUserAsync(HttpContext.User).Result;
+                var tests = testRepository.GetTestsByUserId(user.Id);
+                ViewData["Tests"] = tests;
+                return View("ChooseTest");
+            }
+            else
+            {
+                var user = userManager.GetUserAsync(HttpContext.User).Result;
+                var test = testRepository.GetTestByTestId(userTestId);
+                currentUserTest = test;
+                user.CurrentState = 0;
+                flowService.InitFlowService(currentUserTest.TestFile);
+                return View("StartTest");
+            }
+        }
+
 
         public IActionResult Test2(string flow, string condition)
         {
-            var user = userManager.GetUserAsync(HttpContext.User).Result;
-            string state = flowService.ChangeState(user, flow, condition);
-            var tasks = testRepository.GetTestsByFlowId(state, user.UserTests.Find(_ => _.TestId == 0).TestId);
-            ViewData["Tasks"] = tasks;
-            userManager.UpdateAsync(user).Wait();
-            return View(state);
+            if (flow != null)
+            {
+                var user = userManager.GetUserAsync(HttpContext.User).Result;
+                var state = flowService.ChangeState(user, flow, condition);
+                var testTasks = testRepository.GetTestByTestId(currentUserTest.TestId).TestTasks.FirstOrDefault(_ => _.FlowStateName == state);
+                ViewData["Tasks"] = testTasks;
+                userManager.UpdateAsync(user).Wait();
+                return View(state);
+            }
+            else
+            {
+                var user = userManager.GetUserAsync(HttpContext.User).Result;
+                var state = flowService.GetCurrentState(user);
+                var testTasks = testRepository.GetTestByTestId(currentUserTest.TestId).TestTasks.FirstOrDefault(_ => _.FlowStateName == state);
+                ViewData["Tasks"] = testTasks;
+                return View(state);
+            }
+
         }
 
         public IActionResult About()

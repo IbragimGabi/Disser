@@ -44,5 +44,10 @@ namespace StateFlowFramework
         {
             throw new NotImplementedException();
         }
+
+        public void InitFlowWorker(string fileId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

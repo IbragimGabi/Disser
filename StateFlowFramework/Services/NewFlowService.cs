@@ -9,6 +9,11 @@
             this.flowWorker = flowWorker;
         }
 
+        public void InitFlowService(string fileId)
+        {
+            flowWorker.InitFlowWorker(fileId);
+        }
+
         public string ChangeState(object user, string path, string condition)
         {
             string state = "";

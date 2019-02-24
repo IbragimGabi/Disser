@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace StateFlowFramework
+﻿namespace StateFlowFramework
 {
     public interface IFlowService
     {
@@ -11,5 +6,6 @@ namespace StateFlowFramework
         string GoToPreviousState(object user);
         string GetCurrentState(object user);
         string ChangeState(object user, string path, string condition);
+        void InitFlowService(string fileId);
     }
 }
