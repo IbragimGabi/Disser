@@ -15,3 +15,5 @@
 /TestApplication/bin/Debug
 /TestApplication/obj
 /TestApplication/wwwroot
+/StateFlowFrameworkUnitTests/obj
+/StateFlowFrameworkUnitTests/bin/Debug/netcoreapp2.2

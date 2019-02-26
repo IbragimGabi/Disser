@@ -1,4 +1,6 @@
-﻿namespace StateFlowFramework
+﻿using System.Collections.Generic;
+
+namespace StateFlowFramework
 {
     public class NewFlowService : IFlowService
     {
@@ -72,6 +74,11 @@
             StateValueHelper.UpdatePreivousStateValue(user, StateValueHelper.GetCurrentStateValue(user));
             StateValueHelper.UpdateCurrentStateValue(user, prevState.Id);
             return prevState.State;
+        }
+
+        public void CreateNewFlowFile(List<FlowState> states, string fileId)
+        {
+            flowWorker.CreateConfig(states, fileId);
         }
     }
 }

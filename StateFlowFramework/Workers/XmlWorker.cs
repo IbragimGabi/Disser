@@ -20,6 +20,11 @@ namespace StateFlowFramework
             }
         }
 
+        public void CreateConfig(List<FlowState> states, string fileId)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetCondtition(int id, string condition)
         {
             throw new NotImplementedException();

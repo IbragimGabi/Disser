@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace StateFlowFramework
 {
@@ -20,7 +22,68 @@ namespace StateFlowFramework
             states = LoadConfig();
         }
 
-        private List<FlowState> LoadConfig()
+        public void CreateConfig(List<FlowState> states, string fileId)
+        {
+            XmlDocument xml = new XmlDocument();
+            //xml.Load($@".\Configs\BaseConfig.scxml");
+            XDocument doc = new XDocument();
+            XElement element;
+            XElement lastElement = null;
+            var scxml = new XElement("scxml");
+            foreach (var state in states)
+            {
+                if (state.State == "Initial")
+                {
+                    element = new XElement("initial");
+                    foreach (var trans in state.Transitions)
+                    {
+                        if (trans.Key != "default")
+                        {
+                            element.Add(new XElement("transition",
+                                                    new XAttribute("event", trans.Key),
+                                                    new XAttribute("target", trans.Value)
+                                                    ));
+                        }
+                        else
+                        {
+                            element.Add(new XElement("transition", new XAttribute("target", trans.Value)));
+                        }
+                    }
+                    scxml.AddFirst(element);
+                    continue;
+                }
+                if (state.State == "Final")
+                {
+                    lastElement = new XElement("final", new XAttribute("id", state.State));
+                    continue;
+                }
+                element = new XElement("state", new XAttribute("id", state.State));
+                foreach (var trans in state.Transitions)
+                {
+                    if (trans.Key != "default")
+                    {
+                        element.Add(new XElement("transition",
+                                                new XAttribute("event", trans.Key),
+                                                new XAttribute("target", trans.Value)
+                                                ));
+                    }
+                    else
+                    {
+                        element.Add(new XElement("transition", new XAttribute("target", trans.Value)));
+                    }
+                }
+                scxml.Add(element);
+            }
+            scxml.Add(lastElement);
+            doc.Add(scxml);
+
+            var path = $@".\Configs\{fileId}.scxml";
+
+            doc.Save(path);
+            File.WriteAllLines(path, File.ReadAllLines(path).Skip(1));
+        }
+
+        public List<FlowState> LoadConfig()
         {
             List<FlowState> states = new List<FlowState>();
             XmlDocument xml = new XmlDocument();
