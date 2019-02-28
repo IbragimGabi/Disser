@@ -2,11 +2,11 @@
 
 namespace StateFlowFramework
 {
-    public class NewFlowService : IFlowService
+    public class FlowService : IFlowService
     {
         IFlowWorker flowWorker;
 
-        public NewFlowService(IFlowWorker flowWorker)
+        public FlowService(IFlowWorker flowWorker)
         {
             this.flowWorker = flowWorker;
         }

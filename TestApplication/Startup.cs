@@ -33,7 +33,7 @@ namespace TestApplication
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddScoped<IFlowService>(s => new NewFlowService(new ScxmlWorker()));
+            services.AddScoped<IFlowService>(s => new FlowService(new ScxmlWorker()));
 
             services.AddScoped<TestRepository>();
 
