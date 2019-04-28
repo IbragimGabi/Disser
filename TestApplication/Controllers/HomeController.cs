@@ -27,6 +27,11 @@ namespace TestApplication.Controllers
             return View();
         }
 
+        public IActionResult BootstrapTest()
+        {
+            return View();
+        }
+
         public IActionResult Test(string flow, string condition)
         {
             var user = userManager.GetUserAsync(HttpContext.User).Result;
